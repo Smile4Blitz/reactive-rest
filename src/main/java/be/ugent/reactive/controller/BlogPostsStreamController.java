@@ -3,9 +3,7 @@ package be.ugent.reactive.controller;
 import java.time.Duration;
 
 import org.springframework.data.mongodb.core.ChangeStreamEvent;
-import org.springframework.data.mongodb.core.ReactiveChangeStreamOperation;
 import org.springframework.data.mongodb.core.ReactiveMongoTemplate;
-import org.springframework.data.mongodb.core.ReactiveChangeStreamOperation.ReactiveChangeStream;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.GetMapping;
