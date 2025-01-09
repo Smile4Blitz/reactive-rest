@@ -2,7 +2,6 @@ package be.ugent.reactive.controller;
 
 import java.net.URI;
 
-import org.bson.types.ObjectId;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -47,7 +46,7 @@ public class BlogPostsController {
 
     @GetMapping("/{id}")
     @ResponseStatus(code = HttpStatus.OK)
-    public Mono<BlogPost> getById(@PathVariable(name = "id", required = true) ObjectId id) {
+    public Mono<BlogPost> getById(@PathVariable(name = "id", required = true) String id) {
         return this.blogPostDao.getDoc(id).switchIfEmpty(Mono.error(new BlogPostNotFoundException()));
     }
 
@@ -61,19 +60,19 @@ public class BlogPostsController {
     }
 
     @PutMapping("{id}")
-    @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public void addPost(
-            @PathVariable(name = "id") ObjectId id,
+    @ResponseStatus(code = HttpStatus.OK)
+    public Mono<BlogPost> addPost(
+            @PathVariable(name = "id") String id,
             @RequestBody(required = true) BlogPost blogPost)
             throws BlogPostConflictException {
         if (!id.equals(blogPost.getId()))
             throw new BlogPostConflictException();
-        this.blogPostDao.updateDoc(blogPost);
+        return this.blogPostDao.updateDoc(blogPost);
     }
 
     @DeleteMapping("{id}")
     @ResponseStatus(code = HttpStatus.NO_CONTENT)
-    public Mono<Void> addPost(@PathVariable(name = "id", required = true) ObjectId id) {
+    public Mono<Void> addPost(@PathVariable(name = "id", required = true) String id) {
         return this.blogPostDao.deleteDoc(id);
     }
 }

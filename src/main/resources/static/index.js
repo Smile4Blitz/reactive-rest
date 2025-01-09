@@ -1,4 +1,4 @@
-let url = "/posts";
+let url = "/blogposts";
 let main = () => {
     console.log("main");
     fetch(url)
@@ -37,19 +37,19 @@ let showPosts = (data) => {
     }
 };
 
-let showUpdate = (data) => {
-    console.log(data);
-    let post = JSON.parse(data.data);
-    let alertsPlaceHolder = document.getElementById("alerts");
-    let update = `
-    <div id="${post.id}" class="alert alert-info alert-dismissible fade show" role="alert">
-      <strong>New Update!</strong> ${post.title}
-      <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">&times;</span>
-      </button>
-    </div>`;
-    alertsPlaceHolder.insertAdjacentHTML("afterBegin", update);
-    setTimeout(() => $("#" + post.id).alert('close'), 2000);
-}
+// let showUpdate = (data) => {
+//     console.log(data);
+//     let post = JSON.parse(data.data);
+//     let alertsPlaceHolder = document.getElementById("alerts");
+//     let update = `
+//     <div id="${post.id}" class="alert alert-info alert-dismissible fade show" role="alert">
+//       <strong>New Update!</strong> ${post.title}
+//       <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+//         <span aria-hidden="true">&times;</span>
+//       </button>
+//     </div>`;
+//     alertsPlaceHolder.insertAdjacentHTML("afterBegin", update);
+//     setTimeout(() => $("#" + post.id).alert('close'), 2000);
+// }
 
 main();

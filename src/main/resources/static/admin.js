@@ -1,6 +1,6 @@
 let saved_id; // Gebruikt bij het updaten van een blogpost
 let posts; // Een lijst van alle blogpost objecten die we hebben
-let rest_url = "/posts";
+let rest_url = "/blogposts";
 
 
 let clearFields = () => {

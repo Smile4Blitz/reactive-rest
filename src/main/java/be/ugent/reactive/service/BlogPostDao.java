@@ -1,6 +1,5 @@
 package be.ugent.reactive.service;
 
-import org.bson.types.ObjectId;
 import org.springframework.stereotype.Service;
 
 import be.ugent.reactive.model.BlogPost;
@@ -20,7 +19,7 @@ public class BlogPostDao {
         return this.repository.findAll();
     }
 
-    public Mono<BlogPost> getDoc(ObjectId id) {
+    public Mono<BlogPost> getDoc(String id) {
         return this.repository.findById(id);
     }
 
@@ -32,7 +31,7 @@ public class BlogPostDao {
         return this.repository.delete(blogPost);
     }
 
-    public Mono<Void> deleteDoc(ObjectId id) {
+    public Mono<Void> deleteDoc(String id) {
         return this.repository.deleteById(id);
     }
 

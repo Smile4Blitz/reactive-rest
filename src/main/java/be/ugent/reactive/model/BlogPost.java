@@ -1,30 +1,30 @@
 package be.ugent.reactive.model;
 
-import org.bson.types.ObjectId;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class BlogPost {
     @Id
-    ObjectId id;
+    String id;
+    
     String title;
     String content;
 
     public BlogPost() {
     }
 
-    public BlogPost(ObjectId id, String title, String content) {
+    public BlogPost(String id, String title, String content) {
         this.id = id;
         this.title = title;
         this.content = content;
     }
 
-    public ObjectId getId() {
+    public String getId() {
         return this.id;
     }
 
-    void setId(ObjectId id) {
+    void setId(String id) {
         this.id = id;
     }
 
