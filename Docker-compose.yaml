@@ -2,7 +2,9 @@ services:
   mongo1:
     image: mongo:latest
     container_name: mongo1
-    command: [ "mongod", "--replSet", "myReplicaSet", "--keyFile", "/data/configdb/mongo-keyfile", "--bind_ip_all", "--setParameter", "enableLocalhostAuthBypass=false" ]
+    # command: [ "mongod", "--replSet", "myReplicaSet", "--keyFile", "/data/configdb/mongo-keyfile", "--bind_ip_all", "--setParameter", "enableLocalhostAuthBypass=false" ]
+    env_file:
+      - .env
     ports:
       - 27017:27017
     volumes:
@@ -14,29 +16,29 @@ services:
     networks:
       - mongo-net
 
-  mongo2:
-    image: mongo:latest
-    container_name: mongo2
-    command: [ "mongod", "--replSet", "myReplicaSet", "--keyFile", "/data/configdb/mongo-keyfile", "--bind_ip_all", "--setParameter", "enableLocalhostAuthBypass=false" ]
-    volumes:
-      - mongo2_data:/data/db
-      - mongo2_config:/data/configdb
-      - ./certs:/certs
-      - ./scripts/mongo-keyfile:/data/configdb/mongo-keyfile
-    networks:
-      - mongo-net
+  # mongo2:
+  #   image: mongo:latest
+  #   container_name: mongo2
+  #   command: [ "mongod", "--replSet", "myReplicaSet", "--keyFile", "/data/configdb/mongo-keyfile", "--bind_ip_all", "--setParameter", "enableLocalhostAuthBypass=false" ]
+  #   volumes:
+  #     - mongo2_data:/data/db
+  #     - mongo2_config:/data/configdb
+  #     - ./certs:/certs
+  #     - ./scripts/mongo-keyfile:/data/configdb/mongo-keyfile
+  #   networks:
+  #     - mongo-net
 
-  mongo3:
-    image: mongo:latest
-    container_name: mongo3
-    command: [ "mongod", "--replSet", "myReplicaSet", "--keyFile", "/data/configdb/mongo-keyfile", "--bind_ip_all", "--setParameter", "enableLocalhostAuthBypass=false" ]
-    volumes:
-      - mongo3_data:/data/db
-      - mongo3_config:/data/configdb
-      - ./certs:/certs
-      - ./scripts/mongo-keyfile:/data/configdb/mongo-keyfile
-    networks:
-      - mongo-net
+  # mongo3:
+  #   image: mongo:latest
+  #   container_name: mongo3
+  #   command: [ "mongod", "--replSet", "myReplicaSet", "--keyFile", "/data/configdb/mongo-keyfile", "--bind_ip_all", "--setParameter", "enableLocalhostAuthBypass=false" ]
+  #   volumes:
+  #     - mongo3_data:/data/db
+  #     - mongo3_config:/data/configdb
+  #     - ./certs:/certs
+  #     - ./scripts/mongo-keyfile:/data/configdb/mongo-keyfile
+  #   networks:
+  #     - mongo-net
 
 networks:
   mongo-net:
